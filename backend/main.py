@@ -1,10 +1,10 @@
-
 import json
 import os
 import asyncio
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from backend.file_integrity import (
@@ -38,7 +38,10 @@ async def start_monitoring():
 # Allow the frontend dashboard to communicate with the API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -53,11 +56,6 @@ class FileRequest(BaseModel):
     file_path: str
 
 
-@app.get("/")
-def home():
-    return {
-        "message": "CyberGuard API is running!"
-    }
 
 
 @app.post("/security/password-check")
@@ -211,3 +209,11 @@ async def automatic_file_monitor():
             )
 
             last_hash = current_hash
+
+
+# Serve the frontend after all API routes
+app.mount(
+    "/",
+    StaticFiles(directory="frontend", html=True),
+    name="frontend"
+)

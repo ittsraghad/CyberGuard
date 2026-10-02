@@ -1,11 +1,13 @@
 
 import sqlite3
+import os
 
 
 DATABASE_FILE = "data/security_events.db"
 
 
 def get_connection():
+    os.makedirs("data", exist_ok=True)
     return sqlite3.connect(DATABASE_FILE)
 
 
