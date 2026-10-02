@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+data/*.db
+data/security_alerts.json
+data/integrity_baseline.json
+
+reports/*.pdf

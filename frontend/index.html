@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div>
+            <h1>🛡️ CyberGuard</h1>
+            <p>Defensive Security Monitoring Dashboard</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            API Online
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+
+        <!-- Security Overview -->
+
+        <section class="overview">
+
+            <div class="card">
+                <h3>System Security</h3>
+                <p id="system-status">Checking...</p>
+                <small>Operating system status</small>
+            </div>
+
+            <div class="card">
+                <h3>Network Connections</h3>
+                <p id="network-count">Checking...</p>
+                <small>Current network activity</small>
+            </div>
+
+            <div class="card">
+                <h3>Security Alerts</h3>
+                <p id="alert-count">Checking...</p>
+                <small>Detected security events</small>
+            </div>
+
+        </section>
+
+
+        <!-- Security Dashboard Summary -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Security Dashboard Summary</h2>
+                    <p>Current security monitoring status</p>
+                </div>
+
+            </div>
+
+
+            <div class="security-summary">
+
+                <div class="security-summary-card">
+                    <span>System</span>
+                    <strong id="summary-system">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>Network</span>
+                    <strong id="summary-network">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>File Integrity</span>
+                    <strong id="summary-file">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>Alerts</span>
+                    <strong id="summary-alerts">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>CPU Usage</span>
+                    <strong id="summary-cpu">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>Memory Usage</span>
+                    <strong id="summary-memory">Checking...</strong>
+                </div>
+
+                <div class="security-summary-card">
+                    <span>Disk Usage</span>
+                    <strong id="summary-disk">Checking...</strong>
+                </div>
+
+            </div>
+
+
+            <div id="overall-security-status" class="overall-security-status">
+                Security status is being evaluated...
+            </div>
+
+        </section>
+
+
+        <!-- Security Risk Indicators -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Security Risk Indicators</h2>
+                    <p>
+                        Rule-based indicators based on current system security data
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="risk-indicators">
+
+                <div class="network-summary">
+
+                    <div class="network-stat">
+                        <span>Overall Risk</span>
+                        <strong id="risk-overall">Checking...</strong>
+                    </div>
+
+                    <div class="network-stat">
+                        <span>Security Alerts</span>
+                        <strong id="risk-alerts">Checking...</strong>
+                    </div>
+
+                    <div class="network-stat">
+                        <span>System Resources</span>
+                        <strong id="risk-resources">Checking...</strong>
+                    </div>
+
+                    <div class="network-stat">
+                        <span>Network Activity</span>
+                        <strong id="risk-network">Checking...</strong>
+                    </div>
+
+                </div>
+
+
+                <div id="risk-message">
+                    Evaluating security indicators...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- File Integrity Monitor -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <h2>File Integrity Monitor</h2>
+
+                <div>
+
+                    <button onclick="createBaseline()">
+                        Create Baseline
+                    </button>
+
+                    <button onclick="checkFileIntegrity()">
+                        Check File
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="file-result">
+                No file check performed yet.
+            </div>
+
+        </section>
+
+
+        <!-- Password Strength Checker -->
+
+        <section class="panel">
+
+            <h2>Password Strength Checker</h2>
+
+            <p>
+                Evaluate password strength without storing the password.
+            </p>
+
+
+            <div class="password-checker">
+
+                <input
+                    type="password"
+                    id="password-input"
+                    placeholder="Enter a test password"
+                >
+
+                <button onclick="checkPasswordStrength()">
+                    Check Password
+                </button>
+
+            </div>
+
+
+            <div id="password-result">
+                No password check performed yet.
+            </div>
+
+        </section>
+
+
+        <!-- Network Connections -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Network Connections</h2>
+                </div>
+
+            </div>
+
+
+            <div id="network-connections">
+                Loading network connections...
+            </div>
+
+        </section>
+
+
+        <!-- Security Alerts -->
+
+        <section class="panel">
+
+            <h2>Security Alerts</h2>
+
+
+            <div id="alerts-container">
+                Loading alerts...
+            </div>
+
+        </section>
+
+
+        <!-- Security Activity -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Security Activity</h2>
+                    <p>Recent security monitoring events</p>
+                </div>
+
+            </div>
+
+
+            <div id="security-activity">
+                Loading security activity...
+            </div>
+
+        </section>
+
+
+        <!-- Database Security Events -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Database Security Events</h2>
+                    <p>Security events stored in the SQLite database</p>
+                </div>
+
+            </div>
+
+
+            <div id="database-events">
+                Loading database events...
+            </div>
+
+        </section>
+
+
+        <!-- Security Report -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Security Report</h2>
+                    <p>Generate a PDF report of the current security status</p>
+                </div>
+
+                <button onclick="generateSecurityReport()">
+                    Generate Security Report
+                </button>
+
+            </div>
+
+
+            <div id="report-result">
+                No security report generated yet.
+            </div>
+
+        </section>
+
+
+        <!-- System Information -->
+
+        <section class="panel">
+
+            <h2>System Information</h2>
+
+
+            <div id="system-info">
+                Loading system information...
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
